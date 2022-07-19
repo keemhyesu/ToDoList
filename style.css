@@ -1,52 +1,45 @@
 body {
   margin: 0;
-  background: url(images/pink.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+}
+
+.inputArea {
+  margin-top: 30px;
 }
 
 .container {
-  background-color: white;
   min-height: 100vh;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  background: url(images/pink.png);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .taskArea {
-  border: 1px solid lightgray;
+  border: 1px solid white;
 }
 
 .taskTabs {
   display: flex;
+  border-bottom: 1px solid white;
   position: relative;
 }
 
-.taskTabs div {
-  padding: 1rem;
-}
-
-#underLine {
-  height: 5px;
-  top: 52px;
-  left: 0px;
-  width: 63px;
+#underline {
+  height: 6px;
+  left: 0;
+  width: 95px;
+  top: 51px;
+  background-color: palegoldenrod;
   position: absolute;
-  background-color: coral;
   padding: 0;
 }
 
-.task {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  border-top: 1px solid lightgray;
+.taskTabs div {
   padding: 1rem;
 }
 
-.taskDone {
-  text-decoration: line-through;
-  transition: 0.5s;
-}
-
-.taskTabs div {
-  cursor: pointer;
+.tasks {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
 }
