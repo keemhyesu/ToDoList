@@ -14,7 +14,6 @@ body {
 
 .container {
   min-height: 100vh;
-
   background: url(images/pink.png);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -33,7 +32,7 @@ body {
   height: 6px;
   left: 0;
   width: 80px;
-  top: 51px;
+  top: 40px;
   background-color: palegoldenrod;
   position: absolute;
   padding: 0;
@@ -41,6 +40,7 @@ body {
 
 .taskTabs div {
   padding: 1rem;
+  cursor: pointer;
 }
 
 .tasks {
