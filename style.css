@@ -5,22 +5,23 @@
 
 body {
   margin: 0;
-}
-
-.inputArea {
-  margin-top: 10px;
-  margin-bottom: 30px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
+  background-image: url(images/pink.png);
   min-height: 100vh;
-  background: url(images/pink.png);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.inputArea {
+  margin-bottom: 30px;
 }
 
 .taskArea {
-  border: 1px solid white;
+  border: 5px solid white;
 }
 
 .taskTabs {
@@ -28,26 +29,31 @@ body {
   position: relative;
 }
 
-#underline {
-  height: 6px;
-  left: 0;
-  width: 80px;
-  top: 40px;
-  background-color: palegoldenrod;
-  position: absolute;
-  padding: 0;
-}
-
 .taskTabs div {
   padding: 1rem;
   cursor: pointer;
 }
 
-.tasks {
+#underline {
+  top: 52px;
+  left: 0;
+  height: 5px;
+  position: absolute;
+  background-color: coral;
+  width: 60px;
+  padding: 0;
+  transition: 0.3s;
+}
+
+.task {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   border-top: 1px solid white;
+}
+
+.task button {
+  border-radius: 5px;
 }
 
 .taskDone {
@@ -69,10 +75,7 @@ button {
   border-radius: 5px;
 }
 
-input {
+#taskInput {
+  width: 80%;
   border: none;
-}
-
-.checkArea button {
-  border-radius: 5px;
 }

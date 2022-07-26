@@ -1,29 +1,25 @@
-let writeArea = document.getElementById("writeArea");
+let taskInput = document.getElementById("taskInput");
+
 let addButton = document.getElementById("addButton");
+addButton.addEventListener("click", addTask);
+
 let underline = document.getElementById("underline");
+
 let tabs = document.querySelectorAll(".taskTabs div");
-
-console.log(underline);
-console.log(tabs);
-
 tabs.forEach((menu) =>
   menu.addEventListener("click", (e) => horizontalIndicator(e))
 );
 
-function horizontalIndicator(e) {
-  underline.style.left = e.currentTarget.offsetLeft + "px";
-  underline.style.width = e.currentTarget.offsetWidth + "px";
-  underline.style.top =
-    e.target.offsetTop + (e.currentTarget.offsetHeight - 5) + "px";
-}
-
-addButton.addEventListener("click", addTask);
-
 let taskList = [];
-
+let mode = "all";
 let filterList = [];
 
-let mode = "all";
+taskInput.addEventListener("keypress", (e) => {
+  if (e.keyCode === 13) {
+    addTask();
+    e.preventDefault();
+  }
+});
 
 for (let i = 1; i < tabs.length; i++) {
   tabs[i].addEventListener("click", function (event) {
@@ -34,10 +30,11 @@ for (let i = 1; i < tabs.length; i++) {
 function addTask() {
   let task = {
     id: randomIdGenerate(),
-    taskContent: writeArea.value,
     isComplete: false,
+    taskContent: taskInput.value,
   };
   taskList.push(task);
+  taskInput.value = "";
   render();
 }
 
@@ -48,27 +45,28 @@ function render() {
   } else if (mode == "ongoing" || mode == "done") {
     list = filterList;
   }
-  let resultHTML = "";
+  let resultHTMl = "";
   for (let i = 0; i < list.length; i++) {
     if (list[i].isComplete == true) {
-      resultHTML += `<div class="tasks">
+      resultHTMl += `<div class="task">
       <div class="taskDone">${list[i].taskContent}</div>
-      <div class="checkArea">
-        <button onClick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-arrow-rotate-right"></i></button>
-        <button onClick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
+      <div>
+        <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+        <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
       </div>
     </div>`;
     } else {
-      resultHTML += `<div class="tasks">
+      resultHTMl += `<div class="task">
     <div>${list[i].taskContent}</div>
-    <div class="checkArea">
-      <button onClick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
-      <button onClick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
+    <div>
+      <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
+      <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
     </div>
-  </div>`;
+  </div>
+`;
     }
   }
-  document.getElementById("taskBoard").innerHTML = resultHTML;
+  document.getElementById("taskBoard").innerHTML = resultHTMl;
 }
 
 function toggleComplete(id) {
@@ -78,17 +76,7 @@ function toggleComplete(id) {
       break;
     }
   }
-  render();
-}
-
-function deleteTask(id) {
-  for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].id == id) {
-      taskList[i].isComplete = taskList.splice(i, 1);
-      break;
-    }
-  }
-  render();
+  filter();
 }
 
 function randomIdGenerate() {
@@ -98,9 +86,17 @@ function randomIdGenerate() {
   );
 }
 
-function filter(event) {
-  mode = event.target.id;
+function deleteTask(id) {
+  for (let i = 0; i < taskList.length; i++) {
+    if (taskList[i].id == id) {
+      taskList.splice(i, 1);
+      break;
+    }
+  }
+  filter();
+}
 
+function filter(event) {
   if (mode == "all") {
     render();
   } else if (mode == "ongoing") {
@@ -119,4 +115,10 @@ function filter(event) {
     render();
   }
   console.log(filterList);
+}
+
+function horizontalIndicator(e) {
+  underline.style.width = e.target.offsetWidth + "px";
+  underline.style.left = e.target.offsetLeft + "px";
+  underline.style.top = e.target.offsetTop + (e.target.offsetHeight - 4) + "px";
 }
