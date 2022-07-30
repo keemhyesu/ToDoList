@@ -6,18 +6,15 @@ addButton.addEventListener("click", addTask);
 let underline = document.getElementById("underline");
 
 let tabs = document.querySelectorAll(".taskTabs div");
-tabs.forEach((menu) =>
-  menu.addEventListener("click", (e) => horizontalIndicator(e))
-);
 
 let taskList = [];
 let mode = "all";
 let filterList = [];
 
-taskInput.addEventListener("keypress", (e) => {
-  if (e.keyCode === 13) {
+taskInput.addEventListener("keypress", (event) => {
+  if (event.keyCode === 13) {
     addTask();
-    e.preventDefault();
+    event.preventDefault();
   }
 });
 
@@ -51,16 +48,16 @@ function render() {
       resultHTMl += `<div class="task">
       <div class="taskDone">${list[i].taskContent}</div>
       <div>
-        <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-arrow-rotate-right"></i></button>
-        <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
+        <button onClick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+        <button onClick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
       </div>
     </div>`;
     } else {
       resultHTMl += `<div class="task">
     <div>${list[i].taskContent}</div>
     <div>
-      <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
-      <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
+      <button onClick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
+      <button onClick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash-can"></i></button>
     </div>
   </div>
 `;
@@ -71,7 +68,7 @@ function render() {
 
 function toggleComplete(id) {
   for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].id == id) {
+    if (taskList[i].id === id) {
       taskList[i].isComplete = !taskList[i].isComplete;
       break;
     }
@@ -88,7 +85,7 @@ function randomIdGenerate() {
 
 function deleteTask(id) {
   for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].id == id) {
+    if (taskList[i].id === id) {
       taskList.splice(i, 1);
       break;
     }
@@ -97,6 +94,15 @@ function deleteTask(id) {
 }
 
 function filter(event) {
+  filterList = [];
+  if (event) {
+    mode = event.target.id;
+    underline.style.width = event.target.offsetWidth + "px";
+    underline.style.left = event.target.offsetLeft + "px";
+    underline.style.top =
+      event.target.offsetTop + (event.target.offsetHeight - 4) + "px";
+  }
+
   if (mode == "all") {
     render();
   } else if (mode == "ongoing") {
@@ -114,11 +120,4 @@ function filter(event) {
     }
     render();
   }
-  console.log(filterList);
-}
-
-function horizontalIndicator(e) {
-  underline.style.width = e.target.offsetWidth + "px";
-  underline.style.left = e.target.offsetLeft + "px";
-  underline.style.top = e.target.offsetTop + (e.target.offsetHeight - 4) + "px";
 }
