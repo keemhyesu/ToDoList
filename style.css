@@ -1,0 +1,88 @@
+* {
+  font-family: "Gamja Flower", cursive;
+  font-weight: 600;
+}
+
+body {
+  margin: 0;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background-image: url(images/pink.png);
+  min-height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-width: 800px;
+  border-top: 10px solid blanchedalmond;
+  border-bottom: 10px solid blanchedalmond;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.inputArea {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.taskArea {
+  border: 5px solid white;
+}
+
+.taskTabs {
+  display: flex;
+  position: relative;
+}
+
+.taskTabs div {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+#underline {
+  top: 52px;
+  left: 0;
+  height: 5px;
+  position: absolute;
+  background-color: coral;
+  width: 60px;
+  padding: 0;
+  transition: 0.3s;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-top: 1px solid white;
+}
+
+.task button {
+  border-radius: 5px;
+}
+
+.taskDone {
+  text-decoration: line-through;
+}
+
+button {
+  background-color: #04aa6d;
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#addButton {
+  border-radius: 5px;
+}
+
+#taskInput {
+  width: 80%;
+  height: 40px;
+  border: none;
+}
