@@ -2,6 +2,7 @@
 
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/98025141/181876820-d2ef55c1-bece-47f4-851b-908c7ec74ad2.gif)
 
+▶️ 데모앱 링크 https://deft-selkie-47991b.netlify.app 
 - task를 추가하거나 삭제할 수 있습니다.
 - taskTab을 클릭하면 상태별(모두/진행중/끝남) 할 일들을 볼 수 있습니다.
 
